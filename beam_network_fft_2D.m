@@ -38,7 +38,7 @@ CP.lattice = 'hexagonal' ; % Network lattice : 'linear', 'square', or 'hexagonal
 CP.stdPower = 0/100 ; % Standard deviation of beams power
 CP.power = abs(ones(CP.NB,1).*(1 + CP.stdPower*randn(CP.NB,1))) ; % Beams power
 
-CP.pistonRange = 0 ; % Piston range for uniform law [rad]
+CP.pistonRange = pi ; % Piston range for uniform law [rad]
 CP.tipRange = 1e-3 ; % Tip range for uniform law [rad]
 CP.tiltRange = 1e-3 ; % Tilt range for uniform law [rad]
 
@@ -73,12 +73,12 @@ figure(1)
     subplot(2,2,1),cla
         imagesc(grd.x(1,:),grd.y(:,1),abs(champ).^2)
         axis square,colorbar,shading flat,axis((sqrt(CP.NB)+1)*CP.pitch*[-1 1 -1 1])
-        xlabel('x [m]'),ylabel('y [m]'),title('Intensité champ proche'),caxis([0 1])
+        xlabel('x [m]'),ylabel('y [m]'),title('Near field intensity'),caxis([0 1])
 
     subplot(2,2,2),cla
         imagesc(grd.x(1,:),grd.y(:,1),angle(champ))
         axis square,colorbar,shading flat,axis((sqrt(CP.NB)+1)*CP.pitch*[-1 1 -1 1])
-        xlabel('x [m]'),ylabel('y [m]'),title('Phase champ proche'),caxis(pi*[-1 1])
+        xlabel('x [m]'),ylabel('y [m]'),title('Near field phase'),caxis(pi*[-1 1])
         drawnow
 
         
@@ -89,7 +89,7 @@ figure(1)
     subplot(2,2,3),cla
     imagesc(grd.kx(1,:),grd.ky(:,1),abs(TFchamp).^2)
     axis square,colorbar,axis((2*pi)/CP.w0*[-1 1 -1 1])
-    xlabel('kx [rad/m]'),ylabel('ky [rad/m]'),title(['Intensité CL'])
+    xlabel('kx [rad/m]'),ylabel('ky [rad/m]'),title(['Far field intensity'])
     drawnow
     
         
